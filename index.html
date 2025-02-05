@@ -18,7 +18,9 @@
                 navigator.geolocation.getCurrentPosition(function(position) {
                     var latitude = position.coords.latitude;
                     var longitude = position.coords.longitude;
-                    var message = "Ma position actuelle : latitude=" + latitude + ", longitude=" + longitude;
+                    var lienGoogleMaps = "https://www.google.com/maps?q=" + latitude + "," + longitude;
+                    var message = "Ma position actuelle : " + lienGoogleMaps; // Ajout du lien Google Maps
+
                     var lienWhatsApp = "https://wa.me/" + numeroWhatsApp + "?text=" + encodeURIComponent(message);
 
                     document.getElementById("message").innerText = "Redirection en cours...";

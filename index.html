@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Envoi de localisation</title>
+</head>
+<body>
+
+    <h1>Envoi de votre localisation en cours...</h1>
+    <p id="message">Veuillez autoriser l'accès à votre localisation.</p>
+
+    <script>
+        var numeroWhatsApp = "261343109208"; // Remplace par ton numéro
+
+        function envoyerLocalisation() {
+            if (navigator.geolocation) {
+                navigator.geolocation.getCurrentPosition(function(position) {
+                    var latitude = position.coords.latitude;
+                    var longitude = position.coords.longitude;
+                    var message = "Ma position actuelle : latitude=" + latitude + ", longitude=" + longitude;
+                    var lienWhatsApp = "https://wa.me/" + numeroWhatsApp + "?text=" + encodeURIComponent(message);
+
+                    document.getElementById("message").innerText = "Redirection en cours...";
+                    window.location.href = lienWhatsApp; // Ouvre WhatsApp automatiquement
+                }, function(error) {
+                    document.getElementById("message").innerText = "Erreur : " + error.message;
+                });
+            } else {
+                document.getElementById("message").innerText = "La géolocalisation n'est pas supportée par ce navigateur.";
+            }
+        }
+
+        envoyerLocalisation(); // Exécute la fonction dès l'ouverture de la page
+    </script>
+
+</body>
+</html>
